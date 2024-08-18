@@ -1,0 +1,12 @@
+spring:
+  config:
+    activate:
+      on-profile: win
+  datasource:
+    url: jdbc:sqlserver://${MSSQL_HOST};trustServerCertificate=true;databaseName=mybooks
+    username: ${MSSQL_USER}
+    password: ${MSSQL_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+---
