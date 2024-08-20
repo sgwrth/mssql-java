@@ -6,6 +6,7 @@ spring:
     url: jdbc:sqlserver://${MSSQL_HOST};trustServerCertificate=true;databaseName=mybooks
     username: ${MSSQL_USER}
     password: ${MSSQL_PASSWORD}
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
     hibernate:
       ddl-auto: update
