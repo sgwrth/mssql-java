@@ -1,6 +1,7 @@
 package de.asiegwarth.mssql.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import de.asiegwarth.mssql.responses.LoginResponse;
 import de.asiegwarth.mssql.service.AuthenticationService;
 import de.asiegwarth.mssql.service.JwtService;
 
+@CrossOrigin
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
