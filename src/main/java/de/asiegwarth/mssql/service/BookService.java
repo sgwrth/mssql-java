@@ -19,19 +19,28 @@ public interface BookService {
         BookRepository bookRepo;
 
         @Override
-        public ResponseEntity getAllBooks() {
+        public ResponseEntity<List<Book>> getAllBooks() {
             List<Book> books;
             try {
                 books = bookRepo.findAll();
                 return ResponseEntity.ok(books);
             } catch (Exception e) {
                 e.printStackTrace();
-                return ResponseEntity.badRequest().body("server error");
+                return ResponseEntity.badRequest().build();
             }
         }
 
         @Override
-        public ResponseEntity enterNewBook(BookCommand book) {
+        public ResponseEntity<Book> getBookById(int id) {
+            try {
+                return ResponseEntity.ok(bookRepo.findById(id).orElseThrow());
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().build();
+            }
+        }
+
+        @Override
+        public ResponseEntity<Book> enterNewBook(BookCommand book) {
             Book newBook = new Book();
             newBook.setAuthorFirstname(book.getFirstname());
             newBook.setAuthorLastname(book.getLastname());
@@ -41,13 +50,15 @@ public interface BookService {
                 return ResponseEntity.ok(savedBook);
             } catch (Exception e) {
                 e.printStackTrace();
-                return ResponseEntity.badRequest().body("error");
+                return ResponseEntity.badRequest().build();
             }
         }
     }
 
-    ResponseEntity getAllBooks();
+    ResponseEntity<List<Book>> getAllBooks();
 
-    ResponseEntity enterNewBook(BookCommand book);
+    ResponseEntity<Book> getBookById(int id);
+
+    ResponseEntity<Book> enterNewBook(BookCommand book);
     
 }
