@@ -2,7 +2,6 @@ package de.asiegwarth.mssql.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,11 @@ public interface BookService {
     @Service
     class BookServiceImpl implements BookService {
 
-        @Autowired
-        BookRepository bookRepo;
+        private final BookRepository bookRepo;
+
+        public BookServiceImpl(BookRepository bookRepo) {
+            this.bookRepo = bookRepo;
+        }
 
         @Override
         public ResponseEntity<List<Book>> getAllBooks() {
